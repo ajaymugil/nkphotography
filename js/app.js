@@ -17,19 +17,28 @@ $(document).ready(function() {
         });
     }
 
+
+
+
+    $.vegas('slideshow', {
+        backgrounds: [
+            {src: 'img/bg/bg1.jpg', fade: 1000},
+            {src: 'img/bg/bg4.jpg', fade: 1000}
+        ]
+    })('overlay', {
+        src: 'bg/overlays/02.png'
+    });
+
+
 });
 
 
 
 $(window).resize(function() {
-
     if ($(window).innerWidth() > 1024) {
-
         menu_align();
         content_wrapper_align();
-        alert();
     }
-
 });
 
 
@@ -44,22 +53,19 @@ function menu_align() {
 function content_wrapper_align() {
 
     var cw = $(".content-wrapper");
-    var b_w = parseInt($("body").innerWidth());
-    var b_h = parseInt($("body").innerHeight());
+    var b_w = parseInt($(window).innerWidth());
+    var b_h = parseInt($(window).innerHeight());
     cw.each(function() {
         var cw_w = ($(this).outerWidth() / 2);
         var cw_h = ($(this).outerHeight() / 2);
         var top = function() {
             if ((b_h) < (cw_h * 2)) {
-                return parseInt((b_h / 2) / 3) + parseInt($("#logo").outerHeight() / 2);
+                return parseInt((b_h / 2) / 4) + parseInt($("#logo").outerHeight() / 2);
             } else {
-
                 return parseInt((b_h / 2) - cw_h);
             }
         }();
         var left = function() {
-//            return parseInt((b_w / 2) - (cw_w) + $("#menu").outerWidth());
-          //  console.log(b_w / 2);
             console.log(parseInt((b_w / 2) - (cw_w)));
             return parseInt((b_w / 2) - (cw_w));
         }();
@@ -69,8 +75,8 @@ function content_wrapper_align() {
         });
 
     });
-    
-   // alert($("#page1").css("left"));
+
+    // alert($("#page1").css("left"));
 }
 
 
@@ -96,7 +102,9 @@ $("select").change(function(e) {
 
 function move_to(arg) {
     var id = "#" + $(".content-wrapper:visible").attr("id");
-    if (id != arg) {
+    if (id == "#undefined") {
+        $(arg).fadeIn();
+    } else if (id != arg) {
         $(".content-wrapper:visible").fadeOut(function() {
             $(arg).fadeIn();
         });
@@ -106,6 +114,9 @@ function move_to(arg) {
 
 $(window).load(function() {
     $("#loading").fadeOut(200);
+
+    //$(".backstretch").append("<div id='trancy-layer'>&nbsp;</div>");
+
 });
 
 
@@ -113,7 +124,9 @@ $(window).load(function() {
 
 //
 //$.backstretch([
-//    "http://dl.dropbox.com/u/515046/www/outside.jpg",
-//    "http://dl.dropbox.com/u/515046/www/garfield-interior.jpg",
-//    "http://dl.dropbox.com/u/515046/www/cheers.jpg"
-//], {duration: 3000, fade: 1500});
+//    "img/bg/bg1.jpg",
+////    "img/bg/bg2.jpg",
+////    "img/bg/bg3.jpg",
+//    "img/bg/bg4.jpg"
+//], {duration: 5000, fade: 1500});
+
